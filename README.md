@@ -1,0 +1,2 @@
+### The task
+We are interested in looking for movies that pass the Bechdel test (https://en.wikipedia.org/wiki/Bechdel_test). We've found a website that has a large collection of movie scripts - http://www.imsdb.com/.  We would like you to scrape a few hundred scripts from this website (doesn't have to be all of them), and look for instances where a female character is talking to another female character.  Produce some statistics for the movies you have data for, that you think would be relevant to the Bechdel test.
