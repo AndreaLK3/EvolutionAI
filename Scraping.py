@@ -36,7 +36,7 @@ def get_specific_urls(required_href_fragment, page_url, base_url, outer_element=
 
 def retrieve_movies():
     """ Get all the movie URLs from imsdb.com, organized in a dictionary where keys are genres
-    :return: list of movie URLs; dictionary with keys=genre and value=list of movie URLs
+    :return: dictionary with key=genre and value=list of movie URLs
     """
     genre_movies_dict = dict()
     genre_pages_urls = get_specific_urls("genre", SITE_URL, SITE_URL, "a")
@@ -71,6 +71,8 @@ def retrieve_script_pages(genre_movies_dict):
             continue
         script_page = script_page_ls[0]
         scripts_ls.append(script_page)
+        if i % (num_movies//10) == 0:
+            logging.info(str(i) + "/" + str(num_movies) + " movies...")
 
     return scripts_ls
 
