@@ -34,8 +34,10 @@ def get_specific_urls(required_href_fragment, page_url, base_url, outer_element=
     return specific_links
 
 
-def retrieve_movies():
-    """ Get all the movie URLs from imsdb.com, organized in a dictionary where keys are genres
+def retrieve_movies(max_movies_per_genre):
+    """ Get all the movie URLs from imsdb.com, organized in a dictionary where keys are genres.
+    n: A genre is present if it has at least 10 movies on imsdb.com
+    :parameter: how many movies we wish to retrieve in each genre. Useful for small tests
     :return: dictionary with key=genre and value=list of movie URLs
     """
     genre_movies_dict = dict()
@@ -45,10 +47,11 @@ def retrieve_movies():
 
     for genre_url in genre_pages_urls:
         genre = re.search(pattern, genre_url).group(0)
-        logging.info(genre)
+        logging.debug(genre)
         movie_pages_urls = get_specific_urls("Scripts", genre_url, SITE_URL, "p")
-        logging.info(str(movie_pages_urls[0:10]))
-        genre_movies_dict[genre] = movie_pages_urls
+        movie_pages_urls = movie_pages_urls[0:max_movies_per_genre]
+        if len(movie_pages_urls) >=5:  # a minimum
+            genre_movies_dict[genre] = movie_pages_urls
 
     return genre_movies_dict
 
@@ -67,23 +70,22 @@ def retrieve_script_pages(genre_movies_dict):
     for i, movie_page in enumerate(movies_ls_noduplicates):
         script_page_ls = get_specific_urls("scripts", movie_page, SITE_URL, outer_element="td")
         if len(script_page_ls) != 1:
-            logging.info("Could not find 1 script on the site; " + str(script_page_ls) + "movie_page= " + movie_page)
+            logging.info("Could not find 1 script on the site; movie_page= " + movie_page)
             continue
         script_page = script_page_ls[0]
         scripts_ls.append(script_page)
         if i % (num_movies//10) == 0:
-            logging.info(str(i) + "/" + str(num_movies) + " movies...")
+            logging.info("Retrieving scripts: " + str(i) + "/" + str(num_movies) + " movies...")
 
     return scripts_ls
 
 
-def run_scraping():
-    """
-    Entry point function: access the imsdb.com site to get the URLs for movies and scripts
+def run_scraping(max_movies_per_genre):
+    """  Entry point function: access the imsdb.com site to get the URLs for movies and scripts
     :return: genre_movies_dict (the movie URLs, by genre, in a dictionary); scripts_ls (the URLs for all the scripts)
     """
-    Utilities.init_logging("Scraping.log")
-    genre_movies_dict = retrieve_movies()
+    # Utilities.init_logging("Scraping.log")
+    genre_movies_dict = retrieve_movies(max_movies_per_genre)
     scripts_ls = retrieve_script_pages(genre_movies_dict)
 
     return genre_movies_dict, scripts_ls
