@@ -21,7 +21,7 @@ How many dialogue segments can be found in each movie? How many of them have onl
 - The results are stored in the database `Results.db` using `sqlite3`
 
 
-After analyzing all 1150 scripts, we found out that movies like "Pride and Prejudice", "Jane Eyre", "Black Swan" and "Agnes of God" were 
+After analyzing all 1150 scripts, we found out that movies like "Pride and Prejudice", "Jane Eyre" and "Black Swan" were 
 among those with the highest number of dialogues between women, whereas "Rocky" and "Apocalypse Now" were among the last
 
 #### Note:
