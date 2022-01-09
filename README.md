@@ -46,12 +46,12 @@ Considering all the text fragments that were bold in the script, determine which
 We exclude all the scene descriptions (INT, EXT) and scene CUTs<br/>
 Then, consult the file taken from https://www.behindthename.com/ to guess a character's gender. It is set to "mf" if we can not find out.
 
-#### 4) Locating dialogue sequences
+#### 3) Locating dialogue sequences
 In `ProcessScript.py`:<br/>
 The bold segments of the script are either characters speaking or scene cuts and descriptions. Find the sequences
 where the characters speak uninterrupted and transform them into a sequence of speaker genders, e.g. `[m,f,f,m,f]`
 
-#### 5) Examining the gender of the speakers and saving the results
+#### 4) Examining the gender of the speakers and saving the results
 In `ProcessScript.py`, `explore_bechdel.py`: <br/>
 How many dialogues of 4 (or 8) lines can we find in a movie? How many of them have only women speaking? How many have no women present at all?
 <br/> 
