@@ -1,6 +1,12 @@
 import logging
 import sys
 
+EXAMPLE_FILE = "https://imsdb.com/scripts/Lord-of-the-Rings-Fellowship-of-the-Ring,-The.html"
+# "https://imsdb.com/scripts/Matrix,-The.html"
+# "https://imsdb.com/scripts/Jane-Eyre.html"
+# "https://imsdb.com/scripts/Lord-of-the-Rings-Fellowship-of-the-Ring,-The.html"
+#
+
 def init_logging(logfilename, loglevel=logging.INFO):
     """Invoked to write a message to a text logfile and also print it"""
 
