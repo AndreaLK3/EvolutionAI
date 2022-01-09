@@ -11,7 +11,7 @@ def parse_training_arguments():
     parser = argparse.ArgumentParser(description='Examine if the movies on IMSDB pass the Bechdel test.'
                 'Computes genre and movie statistics, saved on a database')
 
-    parser.add_argument('--movies_per_genre', type=int, default=40,
+    parser.add_argument('--movies_per_genre', type=int, default=30,
                         help='maximum number of movies analyzed, in each genre')
 
     args = parser.parse_args()

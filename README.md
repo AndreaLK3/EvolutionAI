@@ -2,8 +2,8 @@
 We are interested in looking for movies that pass the Bechdel test (https://en.wikipedia.org/wiki/Bechdel_test). We've found a website that has a large collection of movie scripts - http://www.imsdb.com/.  We would like you to scrape a few hundred scripts from this website (doesn't have to be all of them), and look for instances where a female character is talking to another female character.  Produce some statistics for the movies you have data for, that you think would be relevant to the Bechdel test.
 
 ### Method
-We observe that characters, changes of scene, and scene descriptions are all introduced by a 
-<b>bold</b> element in IMSDB. We use this to get the names - and from the names, the gender - of the characters in the movie.<br/>
+Characters, changes of scene, and scene descriptions are all introduced by a 
+<b>bold</b> element in IMSDB. We use this to get the names of the characters in the movie, and from the names, their gender.<br/>
 Every sequence with characters that speak uninterrupted is considered a <b>dialogue</b>. 
 We focus on dialogues with 4 lines and 8 lines, to try and pick exchanges that are somewhat relevant. <br/>
 How many dialogue segments can be found in each movie? How many of them have only women speaking? How many have no women present at all?
@@ -15,10 +15,14 @@ How many dialogue segments can be found in each movie? How many of them have onl
   <br/>
   - Optional parameter: `--movies_per_genre` (int), to limit the amount of movies selected for analysis from each genre.
     <br/>
-    The default value is 40, resulting in 343 scripts given that several movies belong to more than one genre
+    The default value is 30, resulting in 272 scripts given that several movies belong to more than one genre
     <br/>
     It can be set to a very high value (e.g. 500) to process all the movies on IMSDB, resulting in the analysis of 1150 scripts
 - The results are stored in the database `Results.db` using `sqlite3`
+
+
+After analyzing all 1150 scripts, we found out that movies like "Pride and Prejudice", "Jane Eyre", "Black Swan" and "Agnes of God" were 
+among those with the highest number of dialogues between women, whereas "Rocky" and "Apocalypse Now" among the last
 
 #### Note:
 The pipeline `Scripts -> Names -> Genders -> Dialogues -> Statistics`
@@ -50,4 +54,4 @@ where the characters speak uninterrupted and transform them into a sequence of s
 #### 5) Examining the gender of the speakers and saving the results
 In `ProcessScript.py`, `explore_bechdel.py`: <br/>
 How many dialogues of 4 (or 8) lines can we find in a movie? How many of them have only women speaking? How many have no women present at all?
-<br/>
+<br/> 
