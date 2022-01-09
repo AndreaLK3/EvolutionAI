@@ -8,7 +8,7 @@ Every sequence with characters that speak uninterrupted is considered a <b>dialo
 We focus on dialogues with 4 lines and 8 lines, to try and pick exchanges that are somewhat relevant. <br/>
 How many dialogue segments can be found in each movie? How many of them have only women speaking? How many have no women present at all?
 
-#### Running the pipeline
+### Running the pipeline
 - `pip install -r requirements.txt` installs `pandas`, `bs4` (BeautifulSoup, for scraping) and `requests`.
 - Then, `python explore_bechdel.py` will collect the scripts from https://imsdb.com/ and read them to create the statistics 
   on the genders of speakers in dialogues
